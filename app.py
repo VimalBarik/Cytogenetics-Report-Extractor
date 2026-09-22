@@ -11,29 +11,53 @@ from cytogenetics import process_pdf, COLUMNS
 load_dotenv()
 
 st.set_page_config(
+
     page_title="Cytogenetics Report Extractor",
+
     page_icon="🧬",
+
     layout="wide",
+
 )
 
 st.title("🧬 Cytogenetics Report Extractor")
+
 st.caption(
+
     "Extract patient/report fields locally, send karyotype + interpretation "
+
     "to Gemini for structured events, then send a second Gemini call to "
+
     "verify that output against the originals."
+
 )
 
+def get_secret(name):
 
+    if name in st.secrets:
+
+        return st.secrets[name]
+
+    return os.getenv(name)
 
 configured_keys = [
-    k.strip()
-    for k in [
-        os.getenv("GEMINI_API_KEY_1"),
-        os.getenv("GEMINI_API_KEY_2"),
-        os.getenv("GEMINI_API_KEY"),
+
+    key.strip()
+
+    for key in [
+
+        get_secret("GEMINI_API_KEY_1"),
+
+        get_secret("GEMINI_API_KEY_2"),
+
+        get_secret("GEMINI_API_KEY"),
+
     ]
-    if k and k.strip()
+
+    if key and key.strip()
+
 ]
+
 api_configured = len(configured_keys) > 0
 
 with st.sidebar:
