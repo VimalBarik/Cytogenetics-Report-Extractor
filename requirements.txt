@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+opencv-python
+PyMuPDF
+pytesseract
+google-genai
+pydantic
+openpyxl
+python-dotenv
