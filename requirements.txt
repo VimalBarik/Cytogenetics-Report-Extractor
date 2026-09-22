@@ -1,7 +1,7 @@
 streamlit
 pandas
 numpy
-opencv-python
+opencv-python-headless
 PyMuPDF
 pytesseract
 google-genai
